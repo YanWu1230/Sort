@@ -1,50 +1,27 @@
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.Scanner;
-
 public class BubbleSort {
+ public static int compareTo(int cur, int com) {
+        return cur - com;
+    }
 
-	public static void main(String[] args) throws FileNotFoundException {
-		int num = 0;
-		//read the input file
-		Scanner s = new Scanner(new FileReader("HW3.dat"));
-		//obtain the length of the total number
-		num = s.nextInt();
-		//judge if it is necessary to create an array
-		if(num >= 1 || num % 1 == 0) {
-			int[] arr = new int[num];
-			for(int i = 0; i < num; i++) {
-				arr[i] = s.nextInt();
-				
-			}
-			bubbleSort(arr);
-			for(int i = 0; i < num; i++) {
-				System.out.print(arr[i]+" ");
-			}
-		}else {
-			System.out.println("Input Error");
-		}
-		
-	}
+    public static void swap(int[] arr, int index1, int index2) {
+        int temp = arr[index1];
+        arr[index1] = arr[index2];
+        arr[index2] = temp;
+    }
+    public static void main(String[] args){
+        int[] ls = {14, 5, 3, 5, 1, 3};
+        int[] arr = bubbleSort(ls);
+        System.out.println(Arrays.toString(arr));
+    }
 
-	public static int[] bubbleSort(int[] arr) {
-		int num = arr.length;
-		for(int i = num - 1; i > 1; i--) {
-			for(int j = 0; j < i; j++) {
-				if(arr[j] > arr[j+1])
-					swap(arr,j);
-			}
-		}
-		
-		
-		
-		return arr;
-	}
-	
-	private static void swap(int[] arr,  int j) {
-		int temp = arr[j];
-		arr[j] = arr[j + 1];
-		arr[j + 1] = temp;
-	}
-
+    public static int[] bubbleSort(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = arr.length - 1; j > i; j--) {
+                if(compareTo(arr[j], arr[j - 1]) < 0) {
+                    swap(arr, j, j-1);
+                }
+            }
+        }
+        return arr;
+    }
 }
