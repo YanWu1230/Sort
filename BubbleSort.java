@@ -1,5 +1,8 @@
-public class BubbleSort {
- public static int compareTo(int cur, int com) {
+package sort;
+import java.util.Arrays;
+
+public class bubbleSort {
+    public static int compareTo(int cur, int com) {
         return cur - com;
     }
 
