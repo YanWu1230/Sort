@@ -1,8 +1,8 @@
+package sort;
+
 import java.util.Arrays;
 
 public class QuickSort {
-
-	public static void main(String[] args) throws FileNotFoundException {
     public static void main(String[] args) {
         int[] nums = {5,2,9,4,7,6,1,3,8};
         quickSort(nums, 0, nums.length - 1);
@@ -10,8 +10,6 @@ public class QuickSort {
     }
     public static void quickSort(int[] nums, int left, int right) {
         if(left < right) {
-            //pivot: 枢轴；中心点；旋转运动
-            //partition: 分开, 隔开
             int pivot = partition(nums, left, right);
             quickSort(nums, left, pivot);
             quickSort(nums, pivot+1, right);
