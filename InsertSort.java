@@ -1,44 +1,48 @@
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.Scanner;
+package sort;
+
+import java.util.Arrays;
 
 public class InsertSort {
+    public static void main(String[] args) {
+//        int[] arr = new int[]{3, 4, 5, 1, 2};
+//        insertSort(arr);
+//        int[] arr = new int[]{2, 1, 3 , 5, 6};
+        int[] arr = new int[]{3, 7, 2, 1, 5};
+        binaryInsertSort(arr);
+        System.out.println(Arrays.toString(arr));
+    }
+    public static void insertSort(int[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = i + 1; j > 0; j--) {
+                if(arr[j] < arr[j-1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j - 1];
+                    arr[j - 1] = temp;
+                } else {
+                    break;
+                }
+            }
 
-	
-		public static void main(String[] args) throws FileNotFoundException {
-			int num = 0;
-			//read the input file
-			Scanner s = new Scanner(new FileReader("HW3.dat"));
-			//obtain the length of the total number
-			num = s.nextInt();
-			//judge if it is necessary to create an array
-			if(num >= 1 || num % 1 == 0) {
-				int[] arr = new int[num + 1];
-				for(int i = 1; i <= num; i++) {
-					arr[i] = s.nextInt();
-				}
-			insertSort(arr, num);
-			for(int i = 1; i < num + 1; i++) {
-				System.out.print(arr[i] + " ");
-			}
-			}else {
-				System.out.println("Input Error");
-			}
-	}
-		private static void insertSort(int[] arr, int num) {
-			for(int i = 0; i < num - 1; i++) {
-				for(int j = i + 2; j > 1; j--) {
-					arr[0] = arr[j];
-					if(arr[j] < arr[j - 1])
-						swap(arr, j);
-				}
-			}
-		}
-		
-		private static void swap(int[] arr, int j) {
-			arr[j] = arr[j - 1];
-			arr[j - 1] = arr[0];
-		}
+        }
+    }
 
+    public static void binaryInsertSort(int[] arr) {
+        for(int i = 0; i < arr.length -1; i++) {
+            int temp = arr[i + 1];
+            int low = 0;
+            int high = i;
+            while(low <= high) {
+                int mid = low + (high - low) / 2;
+                if(arr[mid] < temp) {
+                    low = mid + 1;
+                } else {
+                    high = mid - 1;
+                }
+            }
+            for(int j = i; j > high; j--) {
+                arr[j + 1] = arr[j];
+            }
+            arr[high+ 1] = temp;
+        }
+    }
 }
- 
