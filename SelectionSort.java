@@ -7,6 +7,12 @@ public class SelectionSort {
         System.out.println(Arrays.toString(arr));
     }
 
+    public static void main(String[] args) {
+        int[] arr = new int[]{3, 4, 5, 1, 2};
+        selectSort(arr);
+        System.out.println(Arrays.toString(arr));
+    }
+
     public static void selectSort(int[] arr) {
         for (int i = 0; i < arr.length -1; i++) {
             int minIndex = i;
